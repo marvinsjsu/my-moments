@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { View, StyleSheet } from "react-native";
+import {
+  FontAwesome,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 import Modal from "../components/styled/Modal";
 import WorkoutItem from "../components/WorkoutItem";
+import Countdown from "../components/styled/Countdown";
 import WorkoutTimer from "../components/styled/WorkoutTimer";
 import PressableText from "../components/styled/PressableText";
 import { SansProBoldText } from "../components/styled/SansProText";
@@ -48,8 +52,7 @@ export default function WorkoutDetailScreen ({ route }: Navigation) {
 
   const nextWorkoutIdx = sequenceIdx + 1;
   const hasNextWorkout = nextWorkoutIdx < workout.sequence.length;
-  const workoutName = sequence.length > 0 && sequence[sequence.length - 1].name;
-  const showWorkoutTimer = !isWorkoutDone;
+  const workoutName = sequence.length > 0 ? sequence[sequence.length - 1].name : "";
   const nextWorkoutName = hasNextWorkout && workout.sequence[nextWorkoutIdx].name;
 
   console.log({ nextWorkoutName, workout, nextWorkoutIdx });
@@ -124,31 +127,40 @@ export default function WorkoutDetailScreen ({ route }: Navigation) {
           </View>
         </Modal>
       </WorkoutItem>
-      {showWorkoutTimer && (
-        <WorkoutTimer
-          onPressStart={handlePressStart}
-          onPressPause={handlePressPause}
-          isStarted={isStarted}
-          isPaused={isPaused}
-          name={workoutName}
-          count={countDown}
-        />
-      )}
-      {nextWorkoutName && (
-        <View style={styles.nextWorkoutContainer}>
-          <SansProBoldText style={styles.nextWorkoutText}>
-            {nextWorkoutName}
-          </SansProBoldText>
-        </View>
-      )}
-      {isWorkoutDone && (
-        <View style={styles.doneContainer}>
-          <SansProBoldText style={styles.doneText}>
-            Awesome Work!
-          </SansProBoldText>
-          <PressableText text="Reset" onPress={handlePressReset} />
-        </View>
-      )}
+      <View style={styles.countdownContainer}>
+        {!isStarted && (
+          <Countdown onDone={handlePressStart} />
+        )}
+        {!isWorkoutDone && isStarted && (
+          <WorkoutTimer
+            onPressStart={handlePressStart}
+            onPressPause={handlePressPause}
+            isPaused={isPaused}
+            name={workoutName}
+            count={countDown}
+          />          
+        )}
+        {hasNextWorkout && (
+          <View style={styles.nextWorkoutContainer}>
+            <SansProBoldText style={styles.nextWorkoutText}>
+              {nextWorkoutName}
+            </SansProBoldText>
+          </View>
+        )}
+        {isWorkoutDone && (
+          <View style={styles.doneContainer}>
+            <SansProBoldText style={styles.doneText}>
+              Awesome Work!
+            </SansProBoldText>
+            <MaterialCommunityIcons
+              onPress={handlePressReset}
+              name="restart"
+              color="black"
+              size={64}
+            />
+          </View>
+        )}
+      </View>
     </View>
   );
 }
@@ -190,12 +202,13 @@ const styles = StyleSheet.create({
     fontSize: 100,
   },
   doneContainer: {
-    flex: 1,
+    flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
   },
   doneText: {
     fontSize: 48,
+    marginBottom: 24,
   },
   nextWorkoutContainer: {
     height: 48,
@@ -203,7 +216,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   nextWorkoutText: {
-    fontSize: 32,
-    opacity: 0.75,
+    fontSize: 28,
+    opacity: 0.5,
+  },
+  countdownContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#bab4b4",
+    marginTop: 10,
+    marginBottom: 20,
   }
 });

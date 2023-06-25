@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
+import WorkoutForm from "../components/styled/WorkoutForm";
+
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
+import { WorkoutItemForm } from "../types/data";
 
 export default function PlannerScreen({ navigation }: NativeStackHeaderProps) {
 
@@ -11,9 +14,15 @@ export default function PlannerScreen({ navigation }: NativeStackHeaderProps) {
     return () => console.log("Unmounting PlannerScreen");
   }, []);
 
+  const handleSubmit = (form: WorkoutItemForm) => {
+    console.log({ form });
+    alert(`${form.name} - ${form.duration}`);
+  };
+
   return (
     <View style={styles.container}>
       <Text>PlannerScreen</Text>
+      <WorkoutForm onSubmit={handleSubmit}/>
       <Button
         title="Go to Home"
         onPress={() => navigation.navigate("Home")}

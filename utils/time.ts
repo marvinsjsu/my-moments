@@ -27,3 +27,12 @@ export function secondsToMinutes(sec: number): [string, number, number] {
 
   return [formattedArr.join(" "), minutes, seconds];
 }
+
+export const getDate = () => {
+  return (new Date()).toLocaleDateString();
+};
+
+export const getInitialSleepTime = () => {
+  const eightHours = (8 * 60 * 60 * 1000);
+  return new Date(Date.now() - eightHours);
+};

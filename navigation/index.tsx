@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { Fontisto } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
@@ -17,9 +17,14 @@ const defaultScreenOptions = {
 
 const Stack = createNativeStackNavigator();
 
-function RootNavigator() {
+type NavigationProps = {
+  colorScheme: string,
+};
+
+function RootNavigator({ colorScheme }: NavigationProps) {
+  const theme = colorScheme === "dark" && DarkTheme;
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <Stack.Navigator>
         <Stack.Screen
           component={BottomTabNavigator}
@@ -87,7 +92,7 @@ function BottomTabNavigator() {
   );
 }
 
-export default function Navigation() {
+export default function Navigation({ colorScheme }: NavigationProps) {
   return (
     <RootNavigator />
   );
