@@ -41,7 +41,7 @@ export function useCountdown(): CountDownReturn {
             console.log("COUNT: ", count);
             return count - 1;
           });
-        }, 100);
+        }, 1000);
       }
     }
 

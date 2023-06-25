@@ -11,7 +11,6 @@ type CountdownProps = {
 };
 
 export default function Countdown({ onDone }: CountdownProps) {
-  console.log(CountdownValues.length);
   const [ idx, setIdx ] = useState<number>(CountdownValues.length - 1);
   const [ isStarted, setIsStarted ] = useState<boolean>(false);
 
