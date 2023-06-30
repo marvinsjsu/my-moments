@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
-import {
-  FontAwesome,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import React, { View, StyleSheet } from "react-native";
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Modal from "../components/styled/Modal";
 import WorkoutItem from "../components/WorkoutItem";

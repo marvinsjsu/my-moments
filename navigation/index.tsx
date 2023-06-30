@@ -1,3 +1,4 @@
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
@@ -5,8 +6,10 @@ import { ColorSchemeName } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
 
 import HomeScreen from "../screens/HomeScreen";
+import FocusScreen from "../screens/FocusScreen";
 import PlannerScreen from "../screens/PlannerScreen";
 import JournalScreen from "../screens/JournalScreen";
 import WorkoutDetailScreen from "../screens/WorkoutDetailScreen";
@@ -49,7 +52,21 @@ const BottomTab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
   return (
-    <BottomTab.Navigator initialRouteName="Home">
+    <BottomTab.Navigator initialRouteName="Journal">
+      <BottomTab.Screen
+        component={JournalScreen}
+        options={{
+          ...defaultScreenOptions,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons
+              name="md-journal-outline"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+        name="Journal"
+      />
       <BottomTab.Screen
         options={{
           // ...defaultScreenOptions,
@@ -76,21 +93,21 @@ function BottomTabNavigator() {
             />
           ),
         }}
-        name="Planner"
+        name="Dailies"
       />
       <BottomTab.Screen
-        component={JournalScreen}
+        component={FocusScreen}
         options={{
           ...defaultScreenOptions,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons
-              name="md-journal-outline"
+            <MaterialIcons
+              name="center-focus-weak"
               color={color}
               size={size}
             />
           ),
         }}
-        name="Journal"
+        name="Focus"
       />
     </BottomTab.Navigator>
   );
