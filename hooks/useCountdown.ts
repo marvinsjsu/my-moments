@@ -40,7 +40,7 @@ export function useCountdown(initialCountValue: number = -1): CountDownReturn {
           setCountDown((count) => {
             return count - 1;
           });
-        }, 1);
+        }, 1000);
       }
     }
 

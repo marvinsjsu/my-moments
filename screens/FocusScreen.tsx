@@ -78,9 +78,9 @@ export default function FocusScreen() {
           </FormControl>
         </Box>
       </Center>
-      <HStack width="90%" maxW="500px" justifyContent="flex-end">
-        <FocusListModal />
+      <HStack width="90%" maxW="500px" justifyContent="space-between">
         <PomodoroModal />
+        <FocusListModal />
       </HStack>
     </Box>
   );
