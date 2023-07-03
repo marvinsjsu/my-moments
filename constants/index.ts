@@ -2,11 +2,13 @@
 export enum DataKeys {
   WorkoutData = "workout-data",
   JournalData = "journal-data",
+  FocusData = "focus-data",
 };
 
 export enum JournalDataKeys {
   DailyQuote = "daily-quote",
   JournalEntries = "journal-entries",
+  FocusEntries = "focus-entries",
 };
 
 export enum Screens {

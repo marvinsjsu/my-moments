@@ -1,7 +1,8 @@
+import React from "react";
 import { View, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-import { secondsToMinutes } from "../../utils/time";
+import { secondsToMinutes, countdownDisplay } from "../../utils/time";
 
 import { SansProBoldText } from "./SansProText";
 
@@ -27,7 +28,7 @@ export default function WorkoutTimer(props: WorkoutTimerProps) {
         {name}
       </SansProBoldText>
       <SansProBoldText style={styles.count}>
-        {count === -1 ? "00:00" : timeDisplay}
+        {countdownDisplay(count)}
       </SansProBoldText>
       {isPaused
         ? (

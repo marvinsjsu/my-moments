@@ -14,6 +14,8 @@ import PlannerScreen from "../screens/PlannerScreen";
 import JournalScreen from "../screens/JournalScreen";
 import WorkoutDetailScreen from "../screens/WorkoutDetailScreen";
 
+import { COLORS } from "../theme/colors";
+
 const defaultScreenOptions = {
   headerShown: false,
   // unmountOnBlur: true, // allow screens to be destroyed when inactive

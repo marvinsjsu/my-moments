@@ -55,3 +55,8 @@ export type DailyQuoteItem = {
   quoteLink?: string,
 };
 
+export type FocusItem = {
+  activity: string,
+  duration: number,
+};
+

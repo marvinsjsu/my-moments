@@ -9,12 +9,12 @@ type CountDownReturn = [
   {
     start: (count?: number) => void,
     pause: () => void,
-    reset: () => void,
+    reset: (count?: number) => void,
   }
 ];
 
-export function useCountdown(): CountDownReturn {
-  const [ initialCount, setInitialCount ] = useState<number>(-1);
+export function useCountdown(initialCountValue: number = -1): CountDownReturn {
+  const [ initialCount, setInitialCount ] = useState<number>(initialCountValue);
   const [ countDown, setCountDown ] = useState<number>(-1);
   const [ isStarted, setIsStarted ] = useState<boolean>(false);
   const [ isPaused, setIsPaused ] = useState<boolean>(false);
@@ -38,10 +38,9 @@ export function useCountdown(): CountDownReturn {
         setIsStarted(true);
         intervalRef.current = window.setInterval(() => {
           setCountDown((count) => {
-            console.log("COUNT: ", count);
             return count - 1;
           });
-        }, 1000);
+        }, 1);
       }
     }
 
@@ -69,10 +68,10 @@ export function useCountdown(): CountDownReturn {
         removeInterval();
         setIsPaused(true);
       },
-      reset: () => {
+      reset: (count) => {
         setIsStarted(false);
         setIsPaused(false);
-        setInitialCount(-1);
+        setInitialCount(count ?? initialCountValue);
       },
     }
   ];

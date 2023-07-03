@@ -17,43 +17,33 @@ export default function WorkoutItem({ item, children, childrenStyle = {} }: Work
   const [ durationText ] = secondsToMinutes(item.duration);
 
   return (
-    <View style={styles.container}>
-      <Box
-        bg={{
-          linearGradient: {
-            colors: ['lightBlue.300', 'violet.800'],
-            start: [0, 0],
-            end: [1, 0]
-          }
-        }} p="12" rounded="xl" _text={{
-          fontSize: 'md',
-          fontWeight: 'medium',
-          color: 'warmGray.50',
-          textAlign: 'center'
-        }}
-      >
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.duration}>Duration: {durationText}</Text>
-        <Text style={styles.difficulty}>Difficulty: {item.difficulty}</Text>
-        {children && (
-          <View style={childrenStyle}>
-            {children}
-          </View>
-        )}
-      </Box>
-    </View>
+    <Box
+      bg={{
+        linearGradient: {
+          colors: ['lightBlue.300', 'violet.800'],
+          start: [0, 0],
+          end: [1, 0]
+        }
+      }} p="12" rounded="xl" _text={{
+        fontSize: 'md',
+        fontWeight: 'medium',
+        color: 'warmGray.50',
+        textAlign: 'center'
+      }}
+    >
+      <Text style={styles.name}>{item.name}</Text>
+      <Text style={styles.duration}>Duration: {durationText}</Text>
+      <Text style={styles.difficulty}>Difficulty: {item.difficulty}</Text>
+      {children && (
+        <View style={childrenStyle}>
+          {children}
+        </View>
+      )}
+    </Box>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-    borderColor: "rgba(0,0,0, 0.1)",
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 10,
-  },
   name: {
     fontSize: 15,
     fontWeight: "bold",

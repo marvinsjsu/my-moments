@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
 import { useForm, Controller } from "react-hook-form";
 import {
   Box,
-  Icon,
   Stack,
   Input,
   Center,
+  HStack,
   Heading,
-  IconButton,
   FormControl,
 } from "native-base";
 
+import FocusModal from "../components/modals/FocusModal";
+import FocusListModal from "../components/modals/FocusListModal";
+import PomodoroModal from "../components/modals/PomodoroModal";
 
 export default function FocusScreen() {
   const [ activity, setActivity ] = useState("");
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset } = useForm();
 
   return (
     <Box
@@ -27,15 +27,20 @@ export default function FocusScreen() {
           end: [1, 1]
         }
       }} 
+      flex={1}
+      justifyContent="center"
       alignItems="center"
+      paddingTop={12}
       safeArea
     >
-      <Center height={"100%"}>
+      <Center height="100%">
         <Box w="100%">
           <FormControl isRequired>
-            <Stack space={4} w="100%" maxW="500px" mx="auto" shadow={"3"}>
+            <Stack space={4} w="100%" maxW="500px" mx="auto">
               {/* <FormControl.Label> */}
-              <Heading color="white" size="lg">I want to focus on ...</Heading>
+              <Heading color="white" size="lg">
+                I am focusing on ...
+              </Heading>
               {/* </FormControl.Label> */}
               <Controller
                 render={({ field: {onChange, value}}) => (
@@ -47,10 +52,16 @@ export default function FocusScreen() {
                     placeholder="coding"
                     size="xxl"
                     value={value}
-                    onChangeText={onChange}
+                    onChangeText={(activity) => {
+                      onChange(activity);
+                      setActivity(activity);
+                    }}
                     variant="underlined"
-                    placeholderTextColor="gray.100"
                     autoCapitalize="none"
+                    multiline={true}
+                    autoCorrect={false}
+                    placeholderTextColor="hsla(360, 100%, 100%, 0.20)"
+                    _ios={{ borderBottomColor: "white" }}
                   />
                 )}
                 control={control}
@@ -58,35 +69,19 @@ export default function FocusScreen() {
                   required: true,
                 }}
                 name="activity"
-              />              
-
-              <IconButton icon={<Icon as={AntDesign} name="arrowright" />} borderRadius="full"
-                _icon={{
-                  color: "white",
-                  size: "md"
-                }}
-                _pressed={{
-                  bg: "green.600:alpha.20",
-                }}
-                _ios={{
-                  _icon: {
-                    size: "2xl"
-                  }
-                }}
-                onPress={handleSubmit((data) => {
-                  console.log({ data });
-                })}
+              />
+              <FocusModal
+                activity={activity}
+                backButtonCallback={reset}
               />
             </Stack>
           </FormControl>
         </Box>
       </Center>
+      <HStack width="90%" maxW="500px" justifyContent="flex-end">
+        <FocusListModal />
+        <PomodoroModal />
+      </HStack>
     </Box>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

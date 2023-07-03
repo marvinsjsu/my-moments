@@ -36,3 +36,11 @@ export const getInitialSleepTime = () => {
   const eightHours = (8 * 60 * 60 * 1000);
   return new Date(Date.now() - eightHours);
 };
+
+export const countdownDisplay = (count: number) => {
+  const [_timeStr, mins, secs] = secondsToMinutes(count);
+  const minsDisplay = mins === 0 ? "00" : (mins < 10) ? `0${mins}` : mins;
+  const secsDisplay = secs < 10 ? `0${secs}` : secs;
+  const timeDisplay = `${minsDisplay}:${secsDisplay}`;
+  return count === -1 ? "00:00" : timeDisplay;
+};
