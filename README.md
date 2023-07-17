@@ -49,7 +49,13 @@ To run app locally, if on a Mac, use XCode's simulator, and follow these steps:
 
 ## Features
 
-![](https://ibb.co/7VF9hcZ)
-![](https://ibb.co/yR4cKhG)
-![](https://ibb.co/j3RsT5c)
+<img width="384" alt="Screenshot 2023-07-17 at 1 32 36 PM" src="https://github.com/marvinsjsu/my-moments/assets/2562488/47f00f29-aed5-4748-808c-fbd15d98da85">
+
+<img width="368" alt="Screenshot 2023-07-17 at 1 33 13 PM" src="https://github.com/marvinsjsu/my-moments/assets/2562488/edf478e4-55d1-49e7-862a-b7dd382f09cb">
+
+<img width="384" alt="Screenshot 2023-07-17 at 1 33 27 PM" src="https://github.com/marvinsjsu/my-moments/assets/2562488/96b6a37f-99a2-41a2-9ece-057b7a89428c">
+
+
+
+
   
