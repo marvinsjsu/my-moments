@@ -22,16 +22,8 @@ export default function PlannerScreen({ navigation }: NativeStackHeaderProps) {
 
   return (
     <View style={styles.container}>
-      <Text>PlannerScreen</Text>
-      <WorkoutForm onSubmit={handleSubmit}/>
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate("Home")}
-      />
-      <Button
-        title="Go to Journal"
-        onPress={() => navigation.navigate("Journal")}
-      />
+      <Text>Habit Tracker Screen</Text>
+      {/* <WorkoutForm onSubmit={handleSubmit}/> */}
     </View>
   );
 }

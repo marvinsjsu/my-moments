@@ -41,12 +41,19 @@ export const initFocus = async (): Promise<Boolean> => {
 };
 
 export const addFocusItem = async (focusItem: FocusItem): Promise<FocusItem[]> => {
-  const focusEntries = await getFocusEntries();
-  focusEntries.unshift(focusItem);
+  let focusEntries = await getFocusEntries();
+
+  if (focusEntries) {
+    focusEntries.unshift(focusItem);
+  } else {
+    focusEntries = [focusItem];
+  }
+
   const dailyFocusKey = getFocusKey();
   await storeData(DataKeys.FocusData, {
     [dailyFocusKey]: focusEntries,
   });
+  
   return focusEntries;
 };
 

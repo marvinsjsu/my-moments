@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Vibration } from "react-native";
 import { Flex, IconButton, Icon } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { useKeepAwake } from "expo-keep-awake";
@@ -9,6 +10,16 @@ import SuccessImage from "../styled/SuccessImage";
 import FocusCountdown from "../styled/FocusCountdown";
 
 import { clearFocusEntries } from "../../storage/focus";
+
+const ONE_SECOND_IN_MS = 1000;
+
+const VIBRATION_PATTERN = [
+  1 * ONE_SECOND_IN_MS,
+  1 * ONE_SECOND_IN_MS,
+  1 * ONE_SECOND_IN_MS,
+  1 * ONE_SECOND_IN_MS,
+  1 * ONE_SECOND_IN_MS,
+];
 
 type PressTextProps = {
   activity: string,
@@ -61,7 +72,10 @@ export default function FocusModal({
         ) : (
           <FocusCountdown
             activity={activity}
-            onDone={() => setIsDone(true)}
+            onDone={() => {
+              Vibration.vibrate(VIBRATION_PATTERN);
+              setIsDone(true);
+            }}
           />
         )}
       </Flex>

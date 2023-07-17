@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import { Vibration } from "react-native";
 import { Flex, Center, HStack, Heading, Text, Button, Icon, IconButton, VStack, Container, Spacer } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 

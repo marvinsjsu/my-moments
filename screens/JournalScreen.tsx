@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 import DailyQuote from "../components/styled/DailyQuote";
@@ -31,14 +31,6 @@ export default function JournalScreen({ navigation }: NativeStackHeaderProps) {
       <SleepForm onSubmit={() => {}} />
       {/* <GratitudeForm onSubmit={handleSubmitGratitudeForm} /> */}
       {/* <JournalForm onSubmit={handleSubmitJournalForm} /> */}
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate("Home")}
-      />
-      <Button
-        title="Go to Planner"
-        onPress={() => navigation.navigate("Planner")}
-      />
     </View>
   );
 }

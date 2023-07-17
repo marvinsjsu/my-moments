@@ -16,7 +16,9 @@ export default function FocusListModal() {
   useEffect(() => {
     const loadFocusItems = async () => {
       const focusEntries = await getFocusEntries();
-      setFocusItems(focusEntries);
+      if (focusEntries?.length > 0) {
+        setFocusItems(focusEntries);
+      }
     };
     loadFocusItems();
   }, [currTime]);
@@ -72,7 +74,7 @@ export default function FocusListModal() {
         ) : (
           <Center>
             <Heading fontSize={40} color="purple.800">
-              I have not focused on anything with this timer yet ...
+              I have not focused on anything with MyMoments yet ...
             </Heading>
           </Center>
         )}
